@@ -18,4 +18,11 @@ const io = socketio(server);
 
 io.on('connection', (socket) => {
     console.log('Client connesso');
+    socket.emit('welcome', 'Benvenuto nella chat.');
+    
+    socket.on('register', (nickname) => {
+        socket.nickname = nickname;
+        console.log('Nickname connesso:', socket.nickname);
+        socket.emit('confirm', 'Registrazione avvenuta con successo. Benvenuto ' + socket.nickname);
+    })
 });
