@@ -16,13 +16,18 @@ const server = app.listen(config.port, () => {
 
 const io = socketio(server);
 
+var nicknames = [];
+
 io.on('connection', (socket) => {
     console.log('Client connesso');
     socket.emit('welcome', 'Benvenuto nella chat.');
     
     socket.on('register', (nickname) => {
         socket.nickname = nickname;
+        nicknames.push(nickname);
         console.log('Nickname connesso:', socket.nickname);
         socket.emit('confirm', 'Registrazione avvenuta con successo. Benvenuto ' + socket.nickname);
+        socket.broadcast.emit('newuser', socket.nickname + ' si è unito alla chat.');
+        io.emit('nicknames', nicknames);
     })
 });
