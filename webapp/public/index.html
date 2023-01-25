@@ -15,6 +15,19 @@
         <input type="text" placeholder="nick name" id="nickname">
         <button onclick="register()">Register</button>
     </div>
+    <div id="chat" style="visibility:hidden">
+        <div>
+            <input type="text" placeholder="message" id="message">
+            <button onclick="sendMessage()">Send</button>
+        </div>
+        <div id="messages"></div>
+    </div>
+
+    <div>
+        <h3>Utenti connessi</h3>
+        <ul id="nicknames">
+        </ul>
+    </div>
     <script src="./script.js"></script>
 </body>
 </html>
